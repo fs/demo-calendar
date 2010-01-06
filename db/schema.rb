@@ -9,13 +9,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100106140413) do
+ActiveRecord::Schema.define(:version => 20100106144521) do
 
   create_table "events", :force => true do |t|
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.string   "title"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "uploads", :force => true do |t|
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
