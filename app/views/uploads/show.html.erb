@@ -1,0 +1,20 @@
+<% title "Upload" %>
+
+<p>
+  <strong>Attachment File Name:</strong>
+  <%=h @upload.attachment_file_name %>
+</p>
+<p>
+  <strong>Attachment Content Type:</strong>
+  <%=h @upload.attachment_content_type %>
+</p>
+<p>
+  <strong>Attachment File Size:</strong>
+  <%=h @upload.attachment_file_size %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_upload_path(@upload) %> |
+  <%= link_to "Destroy", @upload, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", uploads_path %>
+</p>
