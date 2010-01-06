@@ -1,0 +1,10 @@
+nbproject
+log/
+.idea
+*.sqlite3
+._*
+.DS_Store
+tmp
+.*~
+tags
+*.swp
