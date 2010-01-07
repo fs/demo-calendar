@@ -1,0 +1,115 @@
+.panel {
+  width: 300px;
+  overflow: auto;
+  border: 1px solid black;
+  float: left;
+  margin-right: 10px;
+  font-size: 10px;
+}
+.panel .header {
+  background-color: #BBBBBB;
+  text-align: center;
+  vertical-align: middle;
+  height: 30px;
+  border-bottom: 1px solid black;
+  padding-top: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.panel .content {
+  height:502px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #E7F3FA;
+  padding: 5px;
+}
+.calendar .content {
+  padding: 0px;
+  height: 512px;
+}
+.day {
+  position: relative;
+}
+.day-header {
+  background-color: #BBBBFF;
+  text-align: center;
+  vertical-align: middle;
+  height: 25px;
+  padding-top: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid black;
+  border-left: none;
+}
+.hour {
+  width:30px;
+  height:31px;
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
+  background: #AAAAAA;
+  font-size: 10px;
+  
+}
+.half {
+  height:15px;
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
+  font-size: 10px;
+}
+.event {
+  float: left;
+  left: 32px;
+  width: 249px;
+  position: absolute;
+  height:5px;
+  border: 1px solid red;
+  background: #FFF8DC;
+  overflow: hidden;
+}
+.upload {
+  height: 32px;
+  margin: 5px;
+  border: 1px solid #A69553;
+  background-color: #FFF8DC;
+  background-repeat: no-repeat;
+  background-image: url(/images/mimetypes/all.jpg);
+  background-position: 5px 7px;
+  padding-left: 48px;
+  padding-top: 16px;
+  padding-bottom: 0px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.upload.jpg, .upload.gif, .upload.png {
+  background-image: url(/images/mimetypes/jpg.jpg);
+}
+.upload.doc, .upload.txt {
+  background-image: url(/images/mimetypes/doc.jpg);
+}
+.upload.html {
+  background-image: url(/images/mimetypes/html.jpg);
+}
+.upload.pdf {
+  background-image: url(/images/mimetypes/pdf.jpg);
+}
+.upload.avi {
+  background-image: url(/images/mimetypes/avi.jpg);
+}
+.upload.tgz, .upload.zip, .upload.rar{
+  background-image: url(/images/mimetypes/tgz.jpg);
+}
+.upload a {
+  color: black;
+}
+a.button {
+  background-color: #54B9DE;
+  color: #FFF;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 7px;
+  border: 2px solid #4290AD;
+}
+a.button:hover {
+  background-color: #429CBD;
+}

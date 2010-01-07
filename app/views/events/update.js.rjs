@@ -1,0 +1,6 @@
+if @success
+  page["flash_notice"].update('Successfully updated event.')
+  page["flash_notice"].show
+else
+  page.replace_html 'event_form', :partial => 'form'
+end
