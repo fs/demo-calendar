@@ -1,20 +1,21 @@
-<% form_for @event do |f| %>
+<% @event ||= Event.new %>
+<% remote_form_for @event do |f| %>
   <%= f.error_messages %>
   <p>
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </p>
   <p>
-    <%= f.label :starts_at %><br />
+    <%= f.label :starts_at, "Start time" %><br />
     <%= f.calendar_date_select :starts_at %>
   </p>
   <p>
-    <%= f.label :ends_at %><br />
+    <%= f.label :ends_at, "End time" %><br />
     <%= f.calendar_date_select :ends_at %>
   </p>
   <p>
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </p>
-  <p><%= f.submit "Submit" %></p>
+  <p><%= f.submit (@event.new_record? ? "Create" : "Save") %></p>
 <% end %>

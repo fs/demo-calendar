@@ -17,7 +17,6 @@ class EventsController < ApplicationController
       flash[:notice] = "Successfully created event."
       redirect_to @event
     else
-      flash[:notice] = Time.parse(params[:event][:starts_at])
       render :action => 'new'
     end
   end

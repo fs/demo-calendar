@@ -9,15 +9,27 @@ class UploadsController < ApplicationController
   
   def new
     @upload = Upload.new
+    render :layout => false
   end
   
   def create
     @upload = Upload.new(params[:upload])
     if @upload.save
-      flash[:notice] = "Successfully created upload."
-      redirect_to @upload
+      respond_to_parent do
+        render :update do |page|
+          page << 'valid.deactivate()'
+          page.insert_html :bottom, 'uploads', :partial => 'upload'
+        end
+      end
     else
-      render :action => 'new'
+      respond_to_parent do
+        render :update do |page|
+          page.replace_html "errors", :partial => "errors"
+          page['upload_errors'].show
+          page['upload_loading'].hide
+          page['upload_form_buttons'].show
+        end
+      end
     end
   end
   
