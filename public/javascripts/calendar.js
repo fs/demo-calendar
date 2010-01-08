@@ -137,6 +137,7 @@ var insertEvent = function(id, html, date){
   }else{
     showEvent(id, date);
   };
+  editEvent(id);
 };
 
 var showNotice = function(notice){
@@ -146,16 +147,16 @@ var showNotice = function(notice){
 
 document.observe('dom:loaded', function(){
   document.body.down('.content').observe('scroll', function(){
-    if ((this.scrollTop <= 100)&&(!$previousDayLoading)) {
+    if ((this.scrollTop <= 200)&&(!$previousDayLoading)) {
       $previousDayLoading = true;
       loadDay(previousDate(this.down('.day').id), function(){$previousDayLoading = false});
     };
-    if ((this.scrollHeight - this.offsetHeight - this.scrollTop <= 100)&&(!$nextDayLoading)) {
+    if ((this.scrollHeight - this.offsetHeight - this.scrollTop <= 200)&&(!$nextDayLoading)) {
       $nextDayLoading = true;
       loadDay(nextDate(this.select('.day').last().id), function(){$nextDayLoading = false});
     };
   });
   $$('.upload').each(function(el){
-    new Draggable(el, {revert: true, handle: 'drag_handle'});
+    new Draggable(el, {revert: true});
   });
 });

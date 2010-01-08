@@ -19,6 +19,10 @@ class UploadsController < ApplicationController
         render :update do |page|
           page << 'valid.deactivate()'
           page.insert_html :bottom, 'uploads', :partial => 'upload'
+          page << "$('uploads').scrollTop = $('uploads').scrollHeight"
+          page[dom_id(@upload)].highlight
+          page << "new Draggable('#{dom_id(@upload)}', {revert: true})"
+          page.call "showNotice", "File successfully uploaded."
         end
       end
     else

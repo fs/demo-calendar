@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100106144521) do
+ActiveRecord::Schema.define(:version => 20100108115514) do
 
   create_table "events", :force => true do |t|
     t.datetime "starts_at"
@@ -18,6 +18,11 @@ ActiveRecord::Schema.define(:version => 20100106144521) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "events_uploads", :force => true do |t|
+    t.integer "event_id"
+    t.integer "upload_id"
   end
 
   create_table "uploads", :force => true do |t|

@@ -1,5 +1,8 @@
 class Event < ActiveRecord::Base
   
+  has_many :events_uploads, :dependent => :destroy
+  has_many :uploads, :through => :events_uploads
+  
   validates_presence_of :title, :starts_at, :ends_at
 
   attr_accessible :starts_at, :ends_at, :title, :description

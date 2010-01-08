@@ -17,15 +17,21 @@
   font-weight: bold;
 }
 .panel .content {
-  height:502px;
+  height:602px;
   overflow-y: auto;
   overflow-x: hidden;
   background: #E7F3FA;
   padding: 5px;
 }
+.panel.files .content{
+  overflow: visible;
+}
+.panel.files{
+  overflow: visible;
+}
 .calendar .content {
   padding: 0px;
-  height: 512px;
+  height: 612px;
 }
 .day {
   position: relative;
@@ -65,6 +71,7 @@
   border: 1px solid red;
   background: #FFF8DC;
   overflow: hidden;
+  cursor: pointer;
 }
 .upload {
   height: 32px;
@@ -79,6 +86,7 @@
   padding-bottom: 0px;
   font-size: 12px;
   font-weight: bold;
+  text-align: left;
 }
 .upload.jpg, .upload.gif, .upload.png {
   background-image: url(/images/mimetypes/jpg.jpg);
@@ -101,6 +109,10 @@
 .upload a {
   color: black;
 }
+.upload a.delete {
+  color: blue;
+  font-size: 10px;
+}
 a.button {
   background-color: #54B9DE;
   color: #FFF;
@@ -112,4 +124,26 @@ a.button {
 }
 a.button:hover {
   background-color: #429CBD;
+}
+#uploads_drop_box {
+  text-align: center;
+  vertical-align: middle;
+  border: 3px solid gray;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  background: #FFF;
+  overflow: auto;
+  min-height: 40px;
+  max-height: 184px;
+}
+#uploads_drop_box.hover {
+  border: 3px dashed gray;
+}
+#uploads_container {
+  background: #FFF;
+  overflow:auto;
+  border: 1px solid gray;
+  padding: 2px;
 }

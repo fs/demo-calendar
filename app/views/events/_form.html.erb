@@ -14,7 +14,38 @@
   </p>
   <p>
     <%= f.label :description %><br />
-    <%= f.text_area :description, :cols => 39, :rows => 9 %>
+    <%= f.text_area :description, :cols => 39, :rows => 9, :style => "width: 100%;" %>
+  </p>
+  <p>
+    <%= f.label :files %>
+    <div id="uploads_drop_box">
+      Drag files here
+      <% for upload in @event.uploads %>
+      <div id="event_<%= dom_id(upload) %>" class="upload <%= File.extname(upload.attachment_file_name)[1..-1] %>">
+        <%= link_to upload.attachment_file_name, upload.attachment.url %>
+        <%= hidden_field_tag 'event[upload_ids][]', upload.id %>
+        <%= link_to_function "delete", "this.up().remove()", :class => "delete" %>
+      </div>
+      <% end %>
+    </div>
+    <script>
+      Droppables.add('uploads_drop_box', { 
+        accept: 'upload',
+        hoverclass: 'hover',
+        onDrop: function(element) {
+          var box = $('uploads_drop_box');
+          if (typeof(box.down('#event_'+element.id)) == 'undefined') {
+            var newFile = new Element('div', {'class': element.className, id: 'event_'+element.id});
+            newFile.update(element.innerHTML);
+            newFile.insert(new Element('input', {name: 'event[upload_ids][]', 'type': 'hidden', 'value': element.id.split('_')[1]}))
+            newFile.insert(new Element('a', {href: '#', onclick: 'this.up().remove(); return false;', 'class': 'delete'}).update('delete'))
+            box.insert({bottom: newFile});
+            box.scrollTop = box.scrollHeight;
+            newFile.highlight(); 
+          };
+        }
+      });
+    </script>
   </p>
   <%= f.error_messages %>
   <p><%= f.submit (@event.new_record? ? "Create" : "Save") %></p>

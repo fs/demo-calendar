@@ -25,7 +25,9 @@ class EventsController < ApplicationController
   
   def create
     @event = Event.new(params[:event])
+    upload_ids = params[:event].delete(:upload_ids) || []
     @event.save
+    @event.upload_ids = upload_ids
     respond_to do |wants|
       wants.js { }
     end
@@ -43,6 +45,8 @@ class EventsController < ApplicationController
   
   def update
     @event = Event.find(params[:id])
+    upload_ids = params[:event].delete(:upload_ids) || []
+    @event.upload_ids = upload_ids
     respond_to do |wants|
       wants.html do
         if @event.update_attributes(params[:event])
