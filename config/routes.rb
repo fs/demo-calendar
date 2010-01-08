@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.root :controller => 'calendar'
   map.resources :uploads
 
   map.resources :events
