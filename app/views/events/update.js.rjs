@@ -1,6 +1,7 @@
 if @success
-  page["flash_notice"].update('Successfully updated event.')
-  page["flash_notice"].show
+  page.call 'showNotice', 'Successfully updated event.'
+  page.replace dom_id(@event), :partial => 'event', :object => @event
+  page << "showEvent('#{@event.id}')"
 else
   page.replace_html 'event_form', :partial => 'form'
 end

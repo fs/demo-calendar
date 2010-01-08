@@ -1,6 +1,6 @@
 if @event.new_record?
   page.replace_html 'event_form', :partial => 'form'
 else
-  page["flash_notice"].update('Event successfully created.')
-  page["flash_notice"].show
+  page.call 'showNotice', 'Event successfully created.'
+  page.call 'insertEvent', @event.id, render(@event), @event.starts_at.strftime("%m-%d-%Y")
 end

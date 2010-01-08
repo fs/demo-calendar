@@ -5,6 +5,12 @@ class EventsController < ApplicationController
   
   def show
     @event = Event.find(params[:id])
+    respond_to do |wants|
+      wants.html {}
+      wants.js do
+        render @event
+      end
+    end
   end
   
   def new
