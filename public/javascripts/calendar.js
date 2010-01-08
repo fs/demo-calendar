@@ -155,4 +155,7 @@ document.observe('dom:loaded', function(){
       loadDay(nextDate(this.select('.day').last().id), function(){$nextDayLoading = false});
     };
   });
+  $$('.upload').each(function(el){
+    new Draggable(el, {revert: true, handle: 'drag_handle'});
+  });
 });
