@@ -1,18 +1,17 @@
-<% stylesheet 'calendar' %>
-<% javascript 'calendar' %>
 <% title 'Calendar' %>
 
 <%= link_to_remote 'Create new event', {
       :url => new_event_path,
       :method => :get,
       :update => 'event_form',
-      :complete => "$$('.panel.form .header')[0].update('New Event'); new Effect.Highlight('event_form')"
+      :complete => "document.body.down('.panel.form .header').update('New Event'); $('event_form').highlight()"
     }, :class => 'button' %>
 <%= link_to 'Upload files', new_upload_path, :class => 'lbOn button' %>
 <br/><br/>
 
 <div id="flash_notice" <%= 'style="display:none;"' if flash[:notice].blank? %> onclick="this.hide();"><%= flash[:notice] %></div>
 <div id="flash_error" <%= 'style="display:none;"' if flash[:error].blank? %> onclick="this.hide();"><%= flash[:error] %></div>
+
 <div class="panel calendar">
   <div class="header">
     Calendar
@@ -41,5 +40,5 @@
 </div>
 
 <script>
-  showDay('<%= @start_time.strftime("%m-%d-%Y") %>');
+  showDay('<%= @start_time.tomorrow.to_s(:day_id) %>');
 </script>

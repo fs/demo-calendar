@@ -1,4 +1,4 @@
-        <div class="event <%= event.id %>" style="top:<%= event_top(event) %>px; height: <%= event_height(event) %>px" onclick="editEvent('<%= event.id %>')">
-          <%= event.starts_at.strftime("%I:%M %p") %> - <%= event.ends_at.strftime("%I:%M %p") %><br/>
-          <%= h(event.title) %>
-        </div>
+<div class="event <%= event.id %>" style="top:<%= event_top(event) %>px; height: <%= event_height(event) %>px" onclick="editEvent('<%= event.id %>')">
+  <%= event.starts_at.to_s(:time_mrdn) %> - <%= event.ends_at.to_s(:time_mrdn) %><br/>
+  <%= h(event.title) %>
+</div>

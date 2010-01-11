@@ -3,8 +3,8 @@
 <html>
   <head>
     <title><%= h(yield(:title) || 'Untitled') %></title>
-    <%= stylesheet_link_tag 'application', '/lightbox/css/lightbox' %>
-    <%= javascript_include_tag 'prototype', 'scriptaculous', 'dragdrop', '/lightbox/scripts/lightbox', :cache => true %>
+    <%= stylesheet_link_tag 'application', '/lightbox/css/lightbox', 'calendar', :cache => true %>
+    <%= javascript_include_tag 'prototype', 'scriptaculous', 'dragdrop', 'calendar', '/lightbox/scripts/lightbox', :cache => true %>
     <%= calendar_date_select_includes 'silver' %>
     <%= yield(:head) %>
   </head>

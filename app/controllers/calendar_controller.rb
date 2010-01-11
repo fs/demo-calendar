@@ -1,7 +1,7 @@
 class CalendarController < ApplicationController
   def index
     @uploads = Upload.all
-    @start_time = Time.zone.parse("12/31/2009 10:35 PM").midnight
+    @start_time = Time.now - 1.day
     @end_time = @start_time + 3.days
     load_events
   end

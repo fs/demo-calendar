@@ -15,6 +15,29 @@ Element.addMethods({
   }
 });
 
+var initDropBox = function(){
+  Droppables.add('uploads_drop_box', { 
+    accept: 'upload',
+    hoverclass: 'hover',
+    onDrop: function(element) {
+      var box = $('uploads_drop_box');
+      if (typeof(box.down('#event_'+element.id)) == 'undefined') {
+        var newFile = new Element('div', {'class': element.className, id: 'event_'+element.id});
+        newFile.update(element.innerHTML);
+        newFile.insert(new Element('input', {name: 'event[upload_ids][]', 'type': 'hidden', 'value': element.id.split('_')[1]}))
+        var del = new Element('a', {href: '#', 'class': 'delete'}).update('delete')
+        del.observe('click', function(){
+          this.up().remove();
+        });
+        newFile.insert(del);
+        box.insert({bottom: newFile});
+        box.scrollTop = box.scrollHeight;
+        newFile.highlight(); 
+      };
+    }
+  });
+}
+
 var editEvent = function(id){
   new Ajax.Updater('event_form', '/events/'+id+'/edit', {
     asynchronous:true,
@@ -74,8 +97,8 @@ var loadDay = function(date, complete){
   });
 };
 
-var previousDate = function(date){
-  newDate = new Date(Date.parse(date.gsub('-', '/')) - 86400000);
+var changeDate = function(date, delta){
+  newDate = new Date(Date.parse(date.gsub('-', '/')) + delta);
   var day = newDate.getDate();
   if (day < 10) {day = '0'+day};
   var month = newDate.getMonth()+1;
@@ -84,14 +107,12 @@ var previousDate = function(date){
   return month+'-'+day+'-'+year;
 };
 
+var previousDate = function(date){
+  return changeDate(date, -86400000);
+};
+
 var nextDate = function(date){
-  newDate = new Date(Date.parse(date.gsub('-', '/')) + 86400000);
-  var day = newDate.getDate();
-  if (day < 10) {day = '0'+day};
-  var month = newDate.getMonth()+1;
-  if (month < 10) {month = '0'+month};
-  var year = newDate.getFullYear();
-  return month+'-'+day+'-'+year;
+  return changeDate(date, 86400000);
 };
 
 var showEvent = function(id, date){

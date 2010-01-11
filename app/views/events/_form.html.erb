@@ -29,22 +29,7 @@
       <% end %>
     </div>
     <script>
-      Droppables.add('uploads_drop_box', { 
-        accept: 'upload',
-        hoverclass: 'hover',
-        onDrop: function(element) {
-          var box = $('uploads_drop_box');
-          if (typeof(box.down('#event_'+element.id)) == 'undefined') {
-            var newFile = new Element('div', {'class': element.className, id: 'event_'+element.id});
-            newFile.update(element.innerHTML);
-            newFile.insert(new Element('input', {name: 'event[upload_ids][]', 'type': 'hidden', 'value': element.id.split('_')[1]}))
-            newFile.insert(new Element('a', {href: '#', onclick: 'this.up().remove(); return false;', 'class': 'delete'}).update('delete'))
-            box.insert({bottom: newFile});
-            box.scrollTop = box.scrollHeight;
-            newFile.highlight(); 
-          };
-        }
-      });
+      initDropBox();
     </script>
   </p>
   <%= f.error_messages %>

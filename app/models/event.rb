@@ -11,15 +11,7 @@ class Event < ActiveRecord::Base
   attr_accessible :starts_at, :ends_at, :title, :description
   
   named_scope :ordered, :order => 'starts_at'
-  named_scope :between, lambda{ |start_time, end_time| {:conditions => ['(? >= starts_at AND ? < ends_at) OR (? > starts_at AND ? <= ends_at) OR (starts_at BETWEEN ? AND ?)', start_time, start_time, end_time, end_time, start_time, end_time]}}
-  
-  def ends_at_greater_than_starts_at
-    errors.add(:ends_at, "must be greater than start time") if ends_at and starts_at and ends_at <= starts_at
-  end
-  
-  def length_of_event
-    errors.add(:length, "must be less than #{MAX_LENGTH.inspect}") if ends_at and starts_at and ends_at - starts_at > MAX_LENGTH
-  end
+  named_scope :between, lambda{ |start_time, end_time| {:conditions => ['(:start_time >= starts_at AND :start_time < ends_at) OR (:end_time > starts_at AND :end_time <= ends_at) OR (starts_at BETWEEN :start_time AND :end_time)', {:start_time => start_time, :end_time => end_time}]}}
   
   def length
     (ends_at - starts_at)/60
@@ -47,5 +39,16 @@ class Event < ActiveRecord::Base
     splitted << e
     splitted
   end
+  
+  protected
+
+  def ends_at_greater_than_starts_at
+    errors.add(:ends_at, "must be greater than start time") if ends_at and starts_at and ends_at <= starts_at
+  end
+  
+  def length_of_event
+    errors.add(:length, "must be less than #{MAX_LENGTH.inspect}") if ends_at and starts_at and ends_at - starts_at > MAX_LENGTH
+  end
+  
 
 end

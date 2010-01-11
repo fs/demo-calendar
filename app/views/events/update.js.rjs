@@ -2,9 +2,9 @@ if @success
   page.call 'showNotice', 'Successfully updated event.'
   page.select(".event.#{@event.id}").invoke('remove')
   @event.split.each do |e|
-    page << "if($('#{e.starts_at.strftime("%m-%d-%Y")}')){$('#{e.starts_at.strftime("%m-%d-%Y")}').insert('#{escape_javascript(render(:partial => 'event', :object => e))}')};"
+    page << "if($('#{e.starts_at.to_s(:day_id)}')){$('#{e.starts_at.to_s(:day_id)}').insert('#{escape_javascript(render(e))}')};"
   end
-  page << "showEvent('#{@event.id}')"
-else
+  page.call  'showEvent' , @event.id
   page.replace_html 'event_form', :partial => 'form'
 end
+page.replace_html 'event_form', :partial => 'form'

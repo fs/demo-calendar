@@ -1,21 +1,19 @@
-    <div class="day" id="<%= day[:day].strftime("%m-%d-%Y") %>">
-      <div class="day-header">
-        <%= day[:day].strftime("%m/%d/%Y") %>
-      </div>
-      <div style="float:left;">
-        <% for hour in 0..23 do %>
-          <div class="hour">
-            <%= sprintf "%02d", hour %>:00
-          </div>
-        <% end %>
-      </div>
-      <div class="float:left; width:254px;">
-        <% for hour in 0..23 do %>
-          <div class="half">
-          </div>
-          <div class="half">
-          </div>
-        <% end %>
-      </div>
-      <%= render day[:events] %>
+<div class="day" id="<%= day[:day].to_s(:day_id) %>">
+  <div class="day-header">
+    <%= day[:day].to_s(:date) %>
+  </div>
+  <div style="float:left;">
+    <% for hour in 0..23 do %>
+    <div class="hour">
+      <%= sprintf "%02d", hour %>:00
     </div>
+    <% end %>
+  </div>
+  <div class="float:left; width:254px;">
+    <% for hour in 0..23 do %>
+    <div class="half"></div>
+    <div class="half"></div>
+    <% end %>
+  </div>
+  <%= render day[:events] %>
+</div>
