@@ -1,4 +1,4 @@
-        <div id="<%= dom_id(event) %>" class="event" style="top:<%= event.starts_at_min / 60.0 * 32.0 + 32 %>px; height: <%= 14 + (event.length / 30.0 - 1)*((event.length < 30) ? 14.0 : 16.0) %>px" onclick="editEvent('<%= event.id %>')">
-          <%= event.starts_at.strftime("%H:%M") %> - <%= event.ends_at.strftime("%H:%M") %><br/>
+        <div class="event <%= event.id %>" style="top:<%= event_top(event) %>px; height: <%= event_height(event) %>px" onclick="editEvent('<%= event.id %>')">
+          <%= event.starts_at.strftime("%I:%M %p") %> - <%= event.ends_at.strftime("%I:%M %p") %><br/>
           <%= h(event.title) %>
         </div>

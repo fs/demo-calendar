@@ -1,13 +1,13 @@
 class CalendarController < ApplicationController
   def index
     @uploads = Upload.all
-    @start_time = Time.now.midnight - 1.day
+    @start_time = Time.zone.parse("12/31/2009 10:35 PM").midnight
     @end_time = @start_time + 3.days
     load_events
   end
   
   def day
-    @start_time = Time.parse(params[:id].gsub('-', '/'))
+    @start_time = Time.zone.parse(params[:id].gsub('-', '/'))
     @end_time = @start_time + 1.day
     load_events
     render :partial => 'day', :object => @days[0]
@@ -17,6 +17,8 @@ class CalendarController < ApplicationController
   
   def load_events
     events = Event.between(@start_time, @end_time).ordered
+    events = events.collect{|e| e.split(@start_time, @end_time)}.flatten
+    puts events.inspect
     @days = []
     day_index = 0
     event_index = 0

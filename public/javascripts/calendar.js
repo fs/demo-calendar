@@ -95,11 +95,11 @@ var nextDate = function(date){
 };
 
 var showEvent = function(id, date){
-  var evnt = $('event_'+id);
-  if (evnt) {
+  var evnt = $$('.event.'+id);
+  if (evnt.length > 0) {
     var content = document.body.down('.panel.calendar .content');
-    content.scrollTo(0, evnt.cumulativeOffset().top - content.cumulativeOffset().top);
-    new Effect.Highlight(evnt);
+    content.scrollTo(0, evnt[0].cumulativeOffset().top - content.cumulativeOffset().top);
+    evnt.invoke('highlight');
   }else{
     loadEvent(id, date, function(){
       showEvent(id, date);
@@ -115,11 +115,15 @@ var loadEvent = function(id, date, complete){
       evalScripts:false,
       method:'get',
       onComplete:function(request){
-        var evnt = $('event_'+id);
-        if (evnt) {
-          evnt.replace(request.responseText);
-        }else{
-          day.insert({bottom:request.responseText})
+        var evnt = $$('.event.'+id);
+        if (evnt.length > 0) {
+          evnt.invoke('remove');
+        };
+        for (var i=0; i < request.responseJSON.length; i++) {
+          var dayId = request.responseJSON[i][0]
+          if ($(dayId)) {
+            $(dayId).insert(request.responseJSON[i][1]);
+          };
         };
         if (typeof(complete) == 'function') {complete()};
       }
@@ -129,14 +133,20 @@ var loadEvent = function(id, date, complete){
   };
 };
 
-var insertEvent = function(id, html, date){
-  var day = $(date);
-  if (day) {
-    day.insert({bottom: html});
-    showEvent(id);
-  }else{
-    showEvent(id, date);
+var insertEvent = function(id, events){
+  var firstDayExists = true;
+  for (var i=0; i < events.length; i++) {
+    var day = $(events[i][0]);
+    if (day) {
+      day.insert({bottom: events[i][1]});
+    }else{
+      if (i == 0) {
+        firstDayExists = false;
+        showEvent(id, events[i][0]);
+      };
+    };
   };
+  if (firstDayExists) {showEvent(id)};
   editEvent(id);
 };
 

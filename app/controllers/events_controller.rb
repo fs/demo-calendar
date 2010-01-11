@@ -8,7 +8,7 @@ class EventsController < ApplicationController
     respond_to do |wants|
       wants.html {}
       wants.js do
-        render @event
+        render :json => @event.split.map{|e| [e.starts_at.strftime("%m-%d-%Y"), render_to_string(e)]}.to_json
       end
     end
   end
