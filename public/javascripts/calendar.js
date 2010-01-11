@@ -1,5 +1,5 @@
-$previousDayLoading = false;
-$nextDayLoading = false;
+var $previousDayLoading = false;
+var $nextDayLoading = false;
 
 Element.addMethods({
   scrollTo: function(element, left, top){
@@ -44,7 +44,7 @@ var editEvent = function(id){
     evalScripts:true,
     method:'get',
     onComplete:function(request){
-      document.body.down('.panel.form .header').update('Edit Event');
+      $$('body')[0].down('.panel.form .header').update('Edit Event');
       new Effect.Highlight('event_form');
     }
   });
@@ -53,7 +53,7 @@ var editEvent = function(id){
 var showDay = function(date, complete){
   var day = $(date);
   if (day) {
-    var content = document.body.down('.panel.calendar .content');
+    var content = $$('body')[0].down('.panel.calendar .content');
     content.scrollTo(0, day.cumulativeOffset().top - content.cumulativeOffset().top);
     if (typeof(complete) == 'function') {complete()};
   }else{
@@ -77,16 +77,16 @@ var loadDay = function(date, complete){
       }else{
         next = $(nextDate(date));
         if (next) {
-          var scrollTop = document.body.down('.panel.calendar .content').scrollTop;
+          var scrollTop = $$('body')[0].down('.panel.calendar .content').scrollTop;
           next.insert({before: request.responseText});
           var height = $(date).getHeight();
-          document.body.down('.panel.calendar .content').scrollTop = scrollTop + height;
+          $$('body')[0].down('.panel.calendar .content').scrollTop = scrollTop + height;
         }else{
           previous = $(previousDate(date));
           if (previous) {
             previous.insert({after: request.responseText});
           }else{
-            document.body.down('.panel.calendar .content').update(request.responseText);
+            $$('body')[0].down('.panel.calendar .content').update(request.responseText);
             loadDay(previousDate(date));
             loadDay(nextDate(date));
           };
@@ -118,7 +118,7 @@ var nextDate = function(date){
 var showEvent = function(id, date){
   var evnt = $$('.event.'+id);
   if (evnt.length > 0) {
-    var content = document.body.down('.panel.calendar .content');
+    var content = $$('body')[0].down('.panel.calendar .content');
     content.scrollTo(0, evnt[0].cumulativeOffset().top - content.cumulativeOffset().top);
     evnt.invoke('highlight');
   }else{
@@ -177,7 +177,7 @@ var showNotice = function(notice){
 };
 
 document.observe('dom:loaded', function(){
-  document.body.down('.content').observe('scroll', function(){
+  $$('body')[0].down('.content').observe('scroll', function(){
     if ((this.scrollTop <= 400)&&(!$previousDayLoading)) {
       $previousDayLoading = true;
       loadDay(previousDate(this.down('.day').id), function(){$previousDayLoading = false});

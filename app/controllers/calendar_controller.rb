@@ -18,7 +18,6 @@ class CalendarController < ApplicationController
   def load_events
     events = Event.between(@start_time, @end_time).ordered
     events = events.collect{|e| e.split(@start_time, @end_time)}.flatten
-    puts events.inspect
     @days = []
     day_index = 0
     event_index = 0

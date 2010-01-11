@@ -24,7 +24,7 @@
       <div id="event_<%= dom_id(upload) %>" class="upload <%= File.extname(upload.attachment_file_name)[1..-1] %>">
         <%= link_to upload.attachment_file_name, upload.attachment.url %>
         <%= hidden_field_tag 'event[upload_ids][]', upload.id %>
-        <%= link_to_function "delete", "this.up().remove()", :class => "delete" %>
+        <%= link_to_function "delete", "$('event_#{dom_id(upload)}').remove()", :class => "delete" %>
       </div>
       <% end %>
     </div>
