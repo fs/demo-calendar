@@ -5,7 +5,7 @@
     <title><%= h(yield(:title) || 'Untitled') %></title>
     <%= stylesheet_link_tag 'application', '/lightbox/css/lightbox', 'calendar', :cache => true %>
     <%= javascript_include_tag 'prototype', 'scriptaculous', 'dragdrop', 'calendar', '/lightbox/scripts/lightbox', :cache => true %>
-    <%= calendar_date_select_includes 'silver' %>
+    <%= calendar_date_select_includes 'default' %>
     <%= yield(:head) %>
   </head>
   <body>

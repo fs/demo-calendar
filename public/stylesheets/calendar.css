@@ -1,148 +1,208 @@
+.calendar, .form, .files {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.form {
+	margin: 0 30px;
+}
+
 .panel {
-  width: 300px;
-  overflow: auto;
-  border: 1px solid black;
-  float: left;
-  margin-right: 10px;
-  font-size: 10px;
+	width: 300px;
+	overflow: auto;
+	float: left;
+	font-size: 10px;
 }
 .panel .header {
-  background-color: #BBBBBB;
-  text-align: center;
-  vertical-align: middle;
-  height: 30px;
-  border-bottom: 1px solid black;
-  padding-top: 5px;
-  font-size: 14px;
-  font-weight: bold;
+	background-color: #D9E5EB;
+	text-align: center;
+	vertical-align: middle;
+	height: 30px;
+	padding-top: 12px;
+	font-size: 14px;
+	font-weight: bold;
+	border: 1px solid #BEC8CE;
+	-moz-border-radius-topleft: 6px;
+	-moz-border-radius-topright: 6px;
+	-webkit-border-top-left-radius: 6px;
+	-webkit-border-top-right-radius: 6px;
 }
 .panel .content {
-  height:602px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  background: #E7F3FA;
-  padding: 5px;
+	height:602px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	background: #E7F3FA;
+	padding: 5px;
+	border: 1px solid #BEC8CE;
+	border-top: 0;
+	-moz-border-radius-bottomleft: 6px;
+	-moz-border-radius-bottomright: 6px;
+	-webkit-border-bottom-left-radius: 6px;
+	-webkit-border-bottom-right-radius: 6px;
 }
 .panel.files .content{
-  overflow: visible;
+	overflow: visible;
 }
 .panel.files{
-  overflow: visible;
+	overflow: visible;
 }
 .calendar .content {
-  padding: 0px;
-  height: 612px;
+	padding: 0px;
+	height: 612px;
 }
 .day {
-  position: relative;
+	position: relative;
 }
 .day-header {
-  background-color: #BBBBFF;
-  text-align: center;
-  vertical-align: middle;
-  height: 25px;
-  padding-top: 5px;
-  font-size: 12px;
-  font-weight: bold;
-  border: 1px solid black;
-  border-left: none;
+	background-color: #BBBBFF;
+	text-align: center;
+	vertical-align: middle;
+	height: 25px;
+	padding-top: 5px;
+	font-size: 12px;
+	font-weight: bold;
+	border: 1px solid black;
+	border-left: none;
 }
-.hour {
-  width:30px;
-  height:31px;
-  border-bottom: 1px solid gray;
-  border-right: 1px solid gray;
-  background: #AAAAAA;
-  font-size: 10px;
-  
+.content .hour {
+	width:35px;
+	height:31px;
+	border-bottom: 1px solid gray;
+	border-right: 1px solid gray;
+	background: #AAAAAA;
+	font-size: 10px;
+	padding-left: 3px;
 }
 .half {
-  height:15px;
-  border-bottom: 1px solid gray;
-  border-right: 1px solid gray;
-  font-size: 10px;
+	height:15px;
+	border-bottom: 1px solid gray;
+	border-right: 1px solid gray;
+	font-size: 10px;
 }
 .event {
-  float: left;
-  left: 32px;
-  width: 249px;
-  position: absolute;
-  height:5px;
-  border: 1px solid red;
-  background: #FFF8DC;
-  overflow: hidden;
-  cursor: pointer;
+	float: left;
+	left: 32px;
+	width: 249px;
+	position: absolute;
+	height:5px;
+	border: 1px solid red;
+	background: #FFF8DC;
+	overflow: hidden;
+	cursor: pointer;
 }
 .upload {
-  height: 32px;
-  margin: 5px;
-  border: 1px solid #A69553;
-  background-color: #FFF8DC;
-  background-repeat: no-repeat;
-  background-image: url(/images/mimetypes/all.jpg);
-  background-position: 5px 7px;
-  padding-left: 48px;
-  padding-top: 16px;
-  padding-bottom: 0px;
-  font-size: 12px;
-  font-weight: bold;
-  text-align: left;
+	height: 32px;
+	margin: 5px;
+	border: 1px solid #A69553;
+	background-color: #FFF8DC;
+	background-repeat: no-repeat;
+	background-image: url(/images/mimetypes/all.jpg);
+	background-position: 5px 7px;
+	padding-left: 48px;
+	padding-top: 16px;
+	padding-bottom: 0px;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: left;
 }
 .upload.jpg, .upload.gif, .upload.png {
-  background-image: url(/images/mimetypes/jpg.jpg);
+	background-image: url(/images/mimetypes/jpg.jpg);
 }
 .upload.doc, .upload.txt {
-  background-image: url(/images/mimetypes/doc.jpg);
+	background-image: url(/images/mimetypes/doc.jpg);
 }
 .upload.html {
-  background-image: url(/images/mimetypes/html.jpg);
+	background-image: url(/images/mimetypes/html.jpg);
 }
 .upload.pdf {
-  background-image: url(/images/mimetypes/pdf.jpg);
+	background-image: url(/images/mimetypes/pdf.jpg);
 }
 .upload.avi {
-  background-image: url(/images/mimetypes/avi.jpg);
+	background-image: url(/images/mimetypes/avi.jpg);
 }
 .upload.tgz, .upload.zip, .upload.rar{
-  background-image: url(/images/mimetypes/tgz.jpg);
+	background-image: url(/images/mimetypes/tgz.jpg);
 }
 .upload a {
-  color: black;
+	color: black;
 }
 .upload a.delete {
-  color: blue;
-  font-size: 10px;
+	color: blue;
+	font-size: 10px;
 }
 a.button {
-  background-color: #54B9DE;
-  color: #FFF;
-  font-size: 14px;
-  font-weight: bold;
-  text-decoration: none;
-  padding: 7px;
-  border: 2px solid #4290AD;
+	background-color: #54B9DE;
+	color: #FFF;
+	font-size: 14px;
+	font-weight: bold;
+	text-decoration: none;
+	padding: 7px;
+	border: 2px solid #4290AD;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
 }
 a.button:hover {
-  background-color: #429CBD;
+	background-color: #429CBD;
 }
 #uploads_drop_box {
-  text-align: center;
-  vertical-align: middle;
-  border: 3px solid gray;
-  margin-bottom: 15px;
-  padding-top: 10px;
-  padding-bottom: 5px;
-  background: #FFF;
-  overflow: auto;
-  min-height: 40px;
-  max-height: 184px;
+	text-align: center;
+	vertical-align: middle;
+	border: 3px solid gray;
+	margin-bottom: 15px;
+	padding-top: 10px;
+	padding-bottom: 5px;
+	background: #FFF;
+	overflow: auto;
+	min-height: 40px;
+	max-height: 184px;
 }
 #uploads_drop_box.hover {
-  border: 3px dashed gray;
+	border: 3px dashed gray;
 }
 #uploads_container {
-  background: #FFF;
-  overflow:auto;
-  border: 1px solid gray;
-  padding: 2px;
+	background: #FFF;
+	overflow:auto;
+	border: 1px solid gray;
+	padding: 2px;
+}
+
+.buttons {
+	float: left;
+	width: 100%;
+	clear: both;
+	margin-bottom: 10px;
+}
+
+.add-event {
+	float: left;
+}
+
+.upload-file {
+	float: right;
+}
+
+#event_submit {
+	width: 100%;
+	height: 30px;
+	font-size: 14px;
+	line-height: 1;
+	font-weight: bold;
+}
+
+#event_description {
+	width: 284px;
+}
+
+.panel label {
+	font-size: 14px;
+}
+
+.calendar_date_select_popup_icon {
+	margin-bottom: -3px;
+}
+
+#uploads_drop_box {
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
 }

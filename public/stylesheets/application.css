@@ -19,14 +19,16 @@ a {
 }
 
 #container {
-  width: 75%;
+  width: 960px;
   margin: 0 auto;
   background-color: #FFF;
-  padding: 20px 40px;
+  padding: 20px 20px;
   border: solid 1px black;
   margin-top: 20px;
   overflow: auto;
   height: 100%;
+	-moz-border-radius: 18px;
+	-webkit-border-radius: 18px;
 }
 
 #flash_notice, #flash_error {
