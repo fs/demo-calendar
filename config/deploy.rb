@@ -1,5 +1,5 @@
 set :application, "web2calendar"
-set :repository,  "git@github.com:fs/web_2_0_events.git"
+set :repository,  "git@github.com:fs/demo-calendar.git"
 set :stages, %w(staging)
 
 require 'capistrano/ext/multistage'
